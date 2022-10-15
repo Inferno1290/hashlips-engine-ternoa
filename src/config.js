@@ -20,7 +20,7 @@ const categories = ["Art", "Collectible"];
 
 const layerConfigurations = [
   {
-    growEditionSizeTo: 500,
+    growEditionSizeTo: 130,
     layersOrder: [
       { name: "Top-Right" },
       { name: "Middle" },
@@ -30,7 +30,7 @@ const layerConfigurations = [
     ],
   },
   {
-    growEditionSizeTo: 100,
+    growEditionSizeTo: 50,
     layersOrder: [
       { name: "Top-Right" },
       { name: "Top-Left" },
@@ -66,7 +66,7 @@ const format = {
   smoothing: false,
   resolution: undefined, // ppi
 
-  padEdition: 4,
+  padEdition: 3,
   hexEdition: false,
 };
 
