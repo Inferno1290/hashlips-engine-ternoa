@@ -19,6 +19,7 @@ try {
 
 const { NETWORK } = require(`${basePath}/constants/network.js`);
 const { freemem } = require('os');
+const { collection } = require("./config");
 const {
   Canvas,
   CanvasRenderingContext2d,
@@ -35,17 +36,18 @@ const buildDir = `${basePath}/build`;
 const layersDir = `${basePath}/layers`;
 
 let {
-  baseUri,
   description,
+  isSoulbound,
+  royalty,
+  collectionId,
+  categories,
   uniqueDnaTorrance,
   layerConfigurations,
   rarityDelimiter,
   shuffleLayerConfigurations,
   debugLogs,
-  extraMetadata,
   namePrefix,
   network,
-  solanaMetadata,
   format,
   background,
   text,
@@ -227,54 +229,27 @@ const drawBackground = (ctx) => {
 };
 
 const addMetadata = (_dna, _edition, _extraMetadata) => {
-  let dateTime = Date.now();
   let tempMetadata = {
-    name: `${namePrefix} #${_edition}`,
+    title: `${namePrefix} #${_edition}`,
     description: description,
-    image: `${baseUri}/${_edition}.png`,
-    dna: sha1(_dna.map(dna => dna.path).join(DNA_DELIMITER)),
+    media: `${_edition}.png`,
     edition: _edition,
-    date: dateTime,
-    ...extraMetadata,
-    ..._extraMetadata,
-    attributes: attributesList,
-    compiler: "HashLips Art Engine",
+    collection: collectionId,
+    royalty: royalty,
+    isSoulbound: isSoulbound,
+    categories: categories,
+    properties: attributesList,
+    
   };
-  if (network == NETWORK.sol) {
-    tempMetadata = {
-      //Added metadata for solana
-      name: tempMetadata.name,
-      symbol: solanaMetadata.symbol,
-      description: tempMetadata.description,
-      //Added metadata for solana
-      seller_fee_basis_points: solanaMetadata.seller_fee_basis_points,
-      image: `${_edition}.png`,
-      //Added metadata for solana
-      external_url: solanaMetadata.external_url,
-      edition: _edition,
-      ...extraMetadata,
-      attributes: tempMetadata.attributes,
-      properties: {
-        files: [
-          {
-            uri: `${_edition}.png`,
-            type: "image/png",
-          },
-        ],
-        category: "image",
-        creators: solanaMetadata.creators,
-      },
-    };
-  }
   metadataList.push(tempMetadata);
   attributesList = [];
 };
 
 const addAttributes = (_element) => {
   let selectedElement = _element.layer.selectedElement;
+  let layer = _element.layer.name;
   attributesList.push({
-    trait_type: _element.layer.name,
-    value: selectedElement.name,
+    [layer]: selectedElement.name,
   });
 };
 

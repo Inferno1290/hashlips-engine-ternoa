@@ -1,6 +1,5 @@
 const NETWORK = {
-  eth: "eth",
-  sol: "sol",
+  ternoa: "ternoa"
 };
 
 module.exports = {

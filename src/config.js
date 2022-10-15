@@ -4,52 +4,69 @@ const basePath = process.cwd();
 const { MODE } = require(`${basePath}/constants/blend_mode.js`);
 const { NETWORK } = require(`${basePath}/constants/network.js`);
 
-const network = NETWORK.eth;
+const network = NETWORK.ternoa;
 
-// General metadata for Ethereum
-const namePrefix = "Your Collection";
-const description = "Remember to replace this description";
-const baseUri = "ipfs://NewUriToReplace";
+const namePrefix = "Shapes";
+//description for each NFT
+const description = "Shapes Description";
+const isSoulbound = false;
+//royalty 0 to 100
+const royalty = 5;
+//Your collection id
+const collectionId = 6;
+//Available categories : Music, Art, Utility, Photography, Collectible, Virtual world, Meme, Game, NSFW
+const categories = ["Art", "Collectible"];
 
-const solanaMetadata = {
-  symbol: "YC",
-  seller_fee_basis_points: 1000, // Define how much % you want from secondary market sales 1000 = 10%
-  external_url: "https://www.youtube.com/c/hashlipsnft",
-  creators: [
-    {
-      address: "7fXNuer5sbZtaTEPhtJ5g5gNtuyRoKkvxdjEjEnPN4mC",
-      share: 100,
-    },
-  ],
-};
 
-// If you have selected Solana then the collection starts from 0 automatically
 const layerConfigurations = [
   {
-    growEditionSizeTo: 5,
+    growEditionSizeTo: 500,
     layersOrder: [
-      { name: "Background" },
-      { name: "Eyeball" },
-      { name: "Eye color" },
-      { name: "Iris" },
-      { name: "Shine" },
-      { name: "Bottom lid" },
-      { name: "Top lid" },
+      { name: "Top-Right" },
+      { name: "Middle" },
+      { name: "Top-Left" },
+      { name: "Bottom-Right" },
+      { name: "Bottom-Left" },
+    ],
+  },
+  {
+    growEditionSizeTo: 100,
+    layersOrder: [
+      { name: "Top-Right" },
+      { name: "Top-Left" },
+      { name: "Bottom-Right" },
+      { name: "Bottom-Left" },
+    ],
+  },
+  {
+    growEditionSizeTo: 10,
+    layersOrder: [
+      { name: "Top-Right" },
+      { name: "Bottom-Left" },
+    ],
+  },
+  {
+    growEditionSizeTo: 10,
+    layersOrder: [
+      { name: "Bottom-Right" },
+      { name: "Top-Left" },
     ],
   },
 ];
 
-const shuffleLayerConfigurations = false;
+//shuffle the layer configurations to randomize rarity generation
+const shuffleLayerConfigurations = true;
 
 const debugLogs = false;
 
+// format size of your final NFT
 const format = {
-  width: 512,
-  height: 512,
+  width: 1000,
+  height: 1000,
   smoothing: false,
   resolution: undefined, // ppi
 
-  padEdition: 0,
+  padEdition: 4,
   hexEdition: false,
 };
 
@@ -110,8 +127,11 @@ const DNA_DELIMITER = "-";
 
 module.exports = {
   format,
-  baseUri,
   description,
+  isSoulbound,
+  royalty,
+  collectionId,
+  categories,
   background,
   uniqueDnaTorrance,
   layerConfigurations,
@@ -119,12 +139,10 @@ module.exports = {
   preview,
   shuffleLayerConfigurations,
   debugLogs,
-  extraMetadata,
   pixelFormat,
   text,
   namePrefix,
   network,
-  solanaMetadata,
   gif,
   preview_gif,
   DNA_DELIMITER,
