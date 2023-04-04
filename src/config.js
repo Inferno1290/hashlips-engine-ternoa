@@ -6,9 +6,9 @@ const { NETWORK } = require(`${basePath}/constants/network.js`);
 
 const network = NETWORK.ternoa;
 
-const namePrefix = "Shapes";
+const namePrefix = "Pxls";
 //description for each NFT
-const description = "Shapes Description";
+const description = "Pxls";
 const isSoulbound = false;
 //royalty 0 to 100
 const royalty = 5;
@@ -19,39 +19,60 @@ const categories = ["Art", "Collectible"];
 
 
 const layerConfigurations = [
-  {
-    growEditionSizeTo: 130,
-    layersOrder: [
-      { name: "Top-Right" },
-      { name: "Middle" },
-      { name: "Top-Left" },
-      { name: "Bottom-Right" },
-      { name: "Bottom-Left" },
-    ],
-  },
-  {
-    growEditionSizeTo: 50,
-    layersOrder: [
-      { name: "Top-Right" },
-      { name: "Top-Left" },
-      { name: "Bottom-Right" },
-      { name: "Bottom-Left" },
-    ],
-  },
+  
   {
     growEditionSizeTo: 10,
     layersOrder: [
-      { name: "Top-Right" },
-      { name: "Bottom-Left" },
+      { name: "Body" },
+      { name: "Mouth" },
+      { name: "Nose" },
+      { name: "Eyes" },
     ],
   },
   {
-    growEditionSizeTo: 10,
+    growEditionSizeTo: 14,
     layersOrder: [
-      { name: "Bottom-Right" },
-      { name: "Top-Left" },
+      { name: "Body" },
+      { name: "Mouth" },
+      { name: "Eyes" },
+      { name: "Nose" },
+      { name: "Head" },
+      { name: "Chin" },
     ],
   },
+  {
+    growEditionSizeTo: 16,
+    layersOrder: [
+      { name: "Body" },
+      { name: "Mouth" },
+      { name: "Eyes" },
+      { name: "Nose" },
+      { name: "Head" }
+    ],
+  },
+  {
+    growEditionSizeTo: 30,
+    layersOrder: [
+      { name: "Body" },
+      { name: "Mouth" },
+      { name: "Eyes" },
+      { name: "Nose" },
+      { name: "Head" },
+      { name: "Chin" },
+      { name: "Accessories" },
+    ],
+  },
+  {
+    growEditionSizeTo: 30,
+    layersOrder: [
+      { name: "Body" },
+      { name: "Mouth" },
+      { name: "Eyes" },
+      { name: "Nose" },
+      { name: "Head" },
+      { name: "Accessories" },
+    ],
+  }
 ];
 
 //shuffle the layer configurations to randomize rarity generation
